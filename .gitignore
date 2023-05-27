@@ -1,6 +1,7 @@
-# Webstorm
+# IDE
 .idea
 .env
+.vscode
 
 # Logs
 logs
@@ -35,3 +36,5 @@ node_modules
 # yarn
 yarn-debug.log*
 yarn-error.log*
+
+.gitkeep
