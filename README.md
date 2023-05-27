@@ -10,6 +10,6 @@
 
 IP-адрес 84.201.152.21
 
-Frontend https://...
+Frontend https://liholesie.nomoredomains.rocks/
 
-Backend https://...
+Backend https://api.liholesie.nomoredomains.rocks/
