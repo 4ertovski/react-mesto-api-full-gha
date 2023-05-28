@@ -42,12 +42,8 @@ export const checkToken = (token) => {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
         },
-        token
-       /* headers: {
-            ...headers,
-            Authorization: `Bearer ${token}`,
-        }, */
     })
         .then(res => {
             if (res.status === 200) {
