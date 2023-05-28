@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес: 84.201.152.21
+IP 84.201.152.21
 
 Frontend https://liholesie.nomoredomains.rocks/
 
