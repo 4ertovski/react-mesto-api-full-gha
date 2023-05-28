@@ -25,12 +25,13 @@ export const register = ( email, password ) => {
         .then(handleResponse)
 };
 
-export const authorize = ( email, password ) => {
+export const authorize = ( email, password, token ) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
        /* headers, */
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ email, password }),
     })
@@ -42,7 +43,7 @@ export const checkToken = (token) => {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer ${token}`,
+            'Authorization': `Bearer ${token}`
         },
     })
         .then(res => {
