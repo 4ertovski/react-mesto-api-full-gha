@@ -1,7 +1,7 @@
 class Api {
-    constructor({baseUrl, /* headers */}) {
+    constructor({baseUrl, headers }) {
         this._baseUrl = baseUrl;
-        /* this._headers = headers; */
+        this._headers = headers;
     }
 
     // обработчик респонсов сервера
@@ -15,16 +15,19 @@ class Api {
     }
 
     // получение начальных данных от пользователя
-    getUserInfo() {
+    getUserInfo(token) {
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`,
+            },
         })
             .then(this._handleResponse)
     }
 
 
     // получение серверных карточек
-    getInitialCards() {
+    getInitialCards(token) {
         return fetch(`${this._baseUrl}/cards`, {
                 headers:{
                     "Content-Type": "application/json",
@@ -65,10 +68,7 @@ class Api {
     postUserCard(item) {
         return fetch(`${this._baseUrl}/cards`,  {
             method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`,
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: item.name,
                 link: item.link
@@ -81,10 +81,7 @@ class Api {
     putLike(id) {
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'PUT',
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: this._headers,
             }
         )
             .then(this._handleResponse)
@@ -94,10 +91,7 @@ class Api {
     deleteLike(id) {
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: this._headers,
             }
         )
             .then(this._handleResponse)
@@ -107,10 +101,7 @@ class Api {
     deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`,  {
                 method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: this._headers,
             }
         )
             .then(this._handleResponse)
