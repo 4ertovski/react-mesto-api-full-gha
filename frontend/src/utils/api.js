@@ -101,7 +101,7 @@ class Api {
             .then(this._handleResponse)
     }
 }
-export const api = new Api({ baseUrl:'https://mesto.nomoreparties.co/v1/cohort-60',
+export const api = new Api({ baseUrl:'https://api.liholesie.nomoredomains.rocks',
     headers: {
         authorization: '3aa61c49-fdf8-469f-ac89-ecfdfa4ec988',
         'Content-Type': 'application/json'
