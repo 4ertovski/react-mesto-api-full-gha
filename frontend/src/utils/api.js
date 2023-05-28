@@ -102,10 +102,10 @@ class Api {
     }
 }
 export const api = new Api({ baseUrl:'https://api.liholesie.nomoredomains.rocks',
-    headers: {
+    /* headers: {
         authorization: '3aa61c49-fdf8-469f-ac89-ecfdfa4ec988',
         'Content-Type': 'application/json'
-    }
+    } */
 });
 
 export default api;
