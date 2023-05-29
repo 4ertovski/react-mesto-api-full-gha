@@ -93,43 +93,22 @@ class Api {
             .then(this._handleResponse)
     }
 
-    changeLikeCardStatus(id, isLiked) {
+    // лайк
+     putLike(id) {
         const token = localStorage.getItem("token");
-        if (isLiked) {
-            return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            }).then((res) => this._handleResponse(res));
-        } else {
-            return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            }).then((res) => this._handleResponse(res));
-        }
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            }
+        )
+            .then(this._handleResponse)
     }
 
-    // лайк
-    /* putLike(id) {
-        const token = localStorage.getItem("token");
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-                method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-            }
-        )
-            .then(this._handleResponse)
-    } */
-
     // удалить лайк
-    /* deleteLike(id) {
+     deleteLike(id) {
         const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
                 method: 'DELETE',
@@ -140,7 +119,7 @@ class Api {
             }
         )
             .then(this._handleResponse)
-    } */
+    }
 
     // удалить карточку
     deleteCard(id) {
