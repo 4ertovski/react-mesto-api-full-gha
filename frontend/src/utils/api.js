@@ -17,7 +17,8 @@ class Api {
     }
 
     // получение начальных данных от пользователя
-    getUserInfo(token) {
+    getUserInfo() {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/users/me`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -29,7 +30,8 @@ class Api {
 
 
     // получение серверных карточек
-    getInitialCards(token) {
+    getInitialCards() {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +43,8 @@ class Api {
     }
 
     //установка данных профиля
-    patchUserProfile(data, token) {
+    patchUserProfile(data) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/users/me`,
             {
                 method: 'PATCH',
@@ -58,7 +61,8 @@ class Api {
     }
 
     // смена аватара
-    patchAvatar(avatar, token) {
+    patchAvatar(avatar) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/users/me/avatar`,  {
             method: 'PATCH',
             headers: {
@@ -73,7 +77,8 @@ class Api {
             .then(this._handleResponse)
     }
 
-    postUserCard(item, token) {
+    postUserCard(item) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards`,  {
             method: 'POST',
             headers: {
@@ -89,7 +94,8 @@ class Api {
     }
 
     // лайк
-    putLike(id, token) {
+    putLike(id) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'PUT',
             headers: {
@@ -102,7 +108,8 @@ class Api {
     }
 
     // удалить лайк
-    deleteLike(id, token) {
+    deleteLike(id) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'DELETE',
             headers: {
@@ -115,7 +122,8 @@ class Api {
     }
 
     // удалить карточку
-    deleteCard(id, token) {
+    deleteCard(id) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._baseUrl}/cards/${id}`,  {
                 method: 'DELETE',
             headers: {
