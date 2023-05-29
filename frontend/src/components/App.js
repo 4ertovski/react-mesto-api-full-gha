@@ -143,7 +143,17 @@ function App() {
         setSelectedCardDelete(card);
     }
 
-    function handleCardLike(card) {
+    const handleCardLike = (card) => {
+        const isLiked = card.likes.some((i) => i._id === currentUser._id);
+        api
+            .changeLikeCardStatus(card._id, !isLiked)
+            .then((newCard) => {
+                const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
+                setCards(newCards);
+            })
+            .catch((err) => console.log(err));
+    };
+    /* function handleCardLike(card) {
         const isLiked = card.likes.some((i) => i === currentUser._id);
 
         if (!isLiked) {
@@ -162,7 +172,7 @@ function App() {
                 })
                 .catch(err => console.log(err));
         }
-    }
+    } */
     function handleCardDelete() {
         api.deleteCard(selectedCardDelete._id)
             .then(() => {
