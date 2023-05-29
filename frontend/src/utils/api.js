@@ -96,7 +96,7 @@ class Api {
     // лайк
     putLike(id) {
         const token = localStorage.getItem("token");
-        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
                 method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ class Api {
     // удалить лайк
     deleteLike(id) {
         const token = localStorage.getItem("token");
-        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
                 method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
