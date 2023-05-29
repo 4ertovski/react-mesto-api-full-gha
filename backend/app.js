@@ -6,7 +6,7 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const { rateLimiterUsingThirdParty } = require('./middlewares/rateLimit');
+/* const { rateLimiterUsingThirdParty } = require('./middlewares/rateLimit'); */
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(requestLogger);
 app.use(bodyParser.json());
 app.use(helmet());
-app.use(rateLimiterUsingThirdParty);
+/* app.use(rateLimiterUsingThirdParty); */
 app.use(router);
 // подключаем логгер ошибок
 app.use(errorLogger);
