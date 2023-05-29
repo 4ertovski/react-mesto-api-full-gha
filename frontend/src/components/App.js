@@ -44,10 +44,10 @@ function App() {
     ////////TODO AUTH
 
     useEffect(() => {
-        const cachedUser = localStorage.getItem("cachedUser");
-        if (cachedUser){
+        const jwt = localStorage.getItem("token");
+        if (jwt){
             auth
-                .checkToken(cachedUser)
+                .checkToken(jwt)
                 .then((res) => {
                     if (res) {
                         setIsLoggedIn(true);
@@ -103,7 +103,7 @@ function App() {
             .then((data) => {
                 if (data.token) {
                     setIsLoggedIn(true);
-                    localStorage.setItem("cachedUser", data.token);
+                    localStorage.setItem("token", data.token);
                     setUserEmail(values.email);
                     navigate("/")
                 }
@@ -118,7 +118,7 @@ function App() {
     const handleLogout = () => {
         setIsLoggedIn(false);
         setUserEmail("");
-        localStorage.removeItem("cachedUser");
+        localStorage.removeItem("token");
     };
 
     ///////END AUTH

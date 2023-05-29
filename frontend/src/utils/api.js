@@ -1,7 +1,9 @@
+export const BASE_URL = 'https://api.liholesie.nomoredomains.rocks';
+
 class Api {
-    constructor({baseUrl, headers }) {
-        this._baseUrl = baseUrl;
-        /* this._headers = headers; */
+    constructor( config ) {
+        this._baseUrl = config.baseUrl;
+        // this._headers = config.headers;
     }
 
     // обработчик респонсов сервера
@@ -17,10 +19,10 @@ class Api {
     // получение начальных данных от пользователя
     getUserInfo(token) {
         return fetch(`${this._baseUrl}/users/me`, {
-            headers:{
-                "Content-Type": "application/json",
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
-            },
+            }
         })
             .then(this._handleResponse)
     }
@@ -29,10 +31,10 @@ class Api {
     // получение серверных карточек
     getInitialCards(token) {
         return fetch(`${this._baseUrl}/cards`, {
-                headers:{
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`,
-                },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
             }
         )
             .then(this._handleResponse)
@@ -43,8 +45,8 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`,
             {
                 method: 'PATCH',
-                headers:{
-                    "Content-Type": "application/json",
+                headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
@@ -59,8 +61,8 @@ class Api {
     patchAvatar(avatar, token) {
         return fetch(`${this._baseUrl}/users/me/avatar`,  {
             method: 'PATCH',
-            headers:{
-                "Content-Type": "application/json",
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify({
@@ -74,8 +76,8 @@ class Api {
     postUserCard(item, token) {
         return fetch(`${this._baseUrl}/cards`,  {
             method: 'POST',
-            headers:{
-                "Content-Type": "application/json",
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify({
@@ -90,8 +92,8 @@ class Api {
     putLike(id, token) {
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'PUT',
-                headers:{
-                "Content-Type": "application/json",
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
             }
@@ -103,8 +105,8 @@ class Api {
     deleteLike(id, token) {
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'DELETE',
-                headers:{
-                "Content-Type": "application/json",
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
             }
@@ -116,8 +118,8 @@ class Api {
     deleteCard(id, token) {
         return fetch(`${this._baseUrl}/cards/${id}`,  {
                 method: 'DELETE',
-            headers:{
-                "Content-Type": "application/json",
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
             }
@@ -125,11 +127,11 @@ class Api {
             .then(this._handleResponse)
     }
 }
-export const api = new Api({ baseUrl:'https://api.liholesie.nomoredomains.rocks',
-    /* headers: {
-        authorization: '3aa61c49-fdf8-469f-ac89-ecfdfa4ec988',
-        'Content-Type': 'application/json'
-    } */
+export const api = new Api({ baseUrl: BASE_URL,
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    }
 });
 
 export default api;
