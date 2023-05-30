@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv').config();
+
+console.log(process.env);
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
